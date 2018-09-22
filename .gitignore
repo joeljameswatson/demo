@@ -7,6 +7,7 @@ public/vendor-*.js
 public/screen-*.css
 public/index.html
 
+build/
 
 # misc
 .DS_Store

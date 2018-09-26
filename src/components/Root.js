@@ -9,7 +9,7 @@ const store = configureStore();
 
 const Root = () => (
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Route path="/:filter?" component={App} />
     </Router>
   </Provider>

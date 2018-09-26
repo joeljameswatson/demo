@@ -10,7 +10,7 @@ const store = configureStore();
 const Root = () => (
   <Provider store={store}>
     <Router>
-      <Route path="/" component={App} />
+      <Route path="/:filter?" component={App} />
     </Router>
   </Provider>
 );

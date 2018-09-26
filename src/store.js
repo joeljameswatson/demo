@@ -1,15 +1,18 @@
 import { createStore } from "redux";
 import rootReducer from "./reducers";
-
-const persistedState = {
-  todos: [{ id: "0", text: "welcome back", completed: false }]
-};
+import { loadState, saveState } from "./localStorage";
 
 const store = createStore(
   rootReducer,
-  persistedState,
+  loadState(),
   // for redux devtools: https://github.com/zalmoxisus/redux-devtools-extension#usage
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(() => {
+  saveState({
+    todos: store.getState().todos
+  });
+});
 
 export default store;

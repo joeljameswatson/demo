@@ -1,12 +1,16 @@
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case "FETCH_TODOS_SUCCESS": // eslint-disable-line no-case-declarations
+    case "FETCH_TODOS_SUCCESS":
       const nextState = { ...state };
       action.response.forEach(todo => {
-        // next state is a shallow copy so there is no mutation
         nextState[todo.id] = todo;
       });
       return nextState;
+    case "ADD_TODO_SUCCESS":
+      return {
+        ...state,
+        [action.response.id]: action.response
+      };
     default:
       return state;
   }

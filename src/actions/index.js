@@ -5,7 +5,6 @@ import * as schema from "./schema";
 
 export const addTodo = text => dispatch =>
   api.addTodo(text).then(response => {
-    console.log("normalized response", normalize(response, schema.todo));
     dispatch({
       type: "ADD_TODO_SUCCESS",
       response: normalize(response, schema.todo)
@@ -31,10 +30,6 @@ export const fetchTodos = filter => (dispatch, getState) => {
 
   return api.fetchTodos(filter).then(
     response => {
-      console.log(
-        "normalized response",
-        normalize(response, schema.arrayOfTodos)
-      );
       dispatch({
         type: "FETCH_TODOS_SUCCESS",
         filter,

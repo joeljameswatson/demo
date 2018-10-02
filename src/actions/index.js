@@ -3,13 +3,14 @@ import * as api from "../api";
 import { getIsFetching } from "../reducers";
 import * as schema from "./schema";
 
-export const addTodo = text => dispatch =>
-  api.addTodo(text).then(response => {
+export const addTodo = text => dispatch => {
+  return api.addTodo(text).then(response => {
     dispatch({
       type: "ADD_TODO_SUCCESS",
       response: normalize(response, schema.todo)
     });
   });
+};
 
 export const toggleTodo = id => dispatch =>
   api.toggleTodo(id).then(response => {

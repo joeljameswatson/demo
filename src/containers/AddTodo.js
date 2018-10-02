@@ -1,27 +1,60 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../actions";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import * as actions from "../actions";
 
-const AddTodo = ({ dispatch }) => {
-  let input;
+class AddTodo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+  }
 
-  return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          if (!input.value.trim()) {
-            return;
-          }
-          dispatch(addTodo(input.value));
-          input.value = "";
-        }}
-      >
-        <input ref={node => (input = node)} />
-        <button type="submit">Add Todo</button>
-      </form>
-    </div>
-  );
-};
+  handleChange = e => {
+    this.setState({ value: e.target.value });
+  };
 
-export default connect()(AddTodo);
+  addTodo = () => {
+    if (!this.state.value.trim()) {
+      return;
+    }
+    this.props
+      .addTodo(this.state.value)
+      .then(() => this.setState({ value: "" }));
+  };
+
+  render() {
+    return (
+      <div>
+        <form>
+          <TextField
+            onKeyPress={e => {
+              if (e.key === "Enter") {
+                this.addTodo();
+                e.preventDefault();
+              }
+            }}
+            label="Add a 'todo'"
+            value={this.state.value}
+            onChange={e => this.handleChange(e)}
+            margin="normal"
+          />
+          <Button
+            onClick={this.addTodo}
+            aria-label="Add"
+            variant="fab"
+            color="primary"
+          >
+            <AddIcon />
+          </Button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default connect(
+  null,
+  actions
+)(AddTodo);

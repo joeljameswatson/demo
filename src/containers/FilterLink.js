@@ -1,17 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 
-const FilterLink = ({ filter, children }) => (
+const styles = {
+  link: {
+    textDecoration: "none"
+  },
+  button: {
+    color: "white"
+  }
+};
+
+const FilterLink = ({ filter, children, classes }) => (
   <NavLink
+    className={classes.link}
     exact
     to={"/" + (filter === "all" ? "" : filter)}
     activeStyle={{
-      textDecoration: "none",
-      color: "black"
+      textDecoration: "underline",
+      color: "white"
     }}
   >
-    {children}
+    <Button className={classes.button}>{children}</Button>
   </NavLink>
 );
 
@@ -20,4 +32,4 @@ FilterLink.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default FilterLink;
+export default withStyles(styles)(FilterLink);

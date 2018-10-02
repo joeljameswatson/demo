@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { withStyles } from "@material-ui/core/styles";
 import { getVisibleTodos, getErrorMessage, getIsFetching } from "../reducers";
 import * as actions from "../actions";
 import TodoList from "../components/TodoList";
 import FetchError from "../components/FetchError";
+
+const styles = theme => ({
+  progress: {
+    display: "flex",
+    justifyContent: "center"
+  }
+});
 
 class VisibleTodoList extends Component {
   componentDidMount() {
@@ -24,9 +32,13 @@ class VisibleTodoList extends Component {
   }
 
   render() {
-    const { isFetching, errorMessage, toggleTodo, todos } = this.props;
+    const { isFetching, errorMessage, toggleTodo, todos, classes } = this.props;
     if (isFetching && !todos.length) {
-      return <p>Loading...</p>;
+      return (
+        <div className={classes.progress}>
+          <CircularProgress />
+        </div>
+      );
     }
     if (errorMessage && !todos.length) {
       return (
@@ -55,4 +67,4 @@ VisibleTodoList = withRouter(
   )(VisibleTodoList)
 );
 
-export default VisibleTodoList;
+export default withStyles(styles)(VisibleTodoList);

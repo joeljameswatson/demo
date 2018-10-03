@@ -3,8 +3,8 @@ import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Header from "./Header";
-import AddTodo from "../containers/AddTodo";
-import VisibleTodoList from "../containers/VisibleTodoList";
+import AddTodo from "./AddTodo";
+import VisibleTodoList from "./VisibleTodoList";
 
 const styles = theme => ({
   root: {

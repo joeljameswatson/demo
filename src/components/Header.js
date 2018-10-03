@@ -15,18 +15,16 @@ const styles = {
 };
 
 const Header = ({ classes }) => (
-  <div className={classes.root}>
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <Typography variant="title" color="inherit" className={classes.grow}>
-          Todo App
-        </Typography>
-        <FilterLink filter="all">All</FilterLink>
-        <FilterLink filter="active">Active</FilterLink>
-        <FilterLink filter="completed">Completed</FilterLink>
-      </Toolbar>
-    </AppBar>
-  </div>
+  <AppBar position="static" color="primary" className={classes.root}>
+    <Toolbar>
+      <Typography variant="title" color="inherit" className={classes.grow}>
+        Todo App
+      </Typography>
+      <FilterLink filter="all">All</FilterLink>
+      <FilterLink filter="active">Active</FilterLink>
+      <FilterLink filter="completed">Completed</FilterLink>
+    </Toolbar>
+  </AppBar>
 );
 
 export default withStyles(styles)(Header);

@@ -12,7 +12,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     margin: "20px",
-    width: "250px"
+    width: "280px"
   }
 });
 
